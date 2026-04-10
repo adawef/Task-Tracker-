@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task Tracker Kuliah</title>
+  <button onclick="loginGoogle()">Login dengan Gmail</button>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
     body {
@@ -310,6 +312,35 @@ if (task.status === 'Belum Dikerjakan') {
 
     tampilkanTugas();
   </script>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+  import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDh7FlXy5uwomrsJ4np6uJ3RjqSSP8C99s",
+    authDomain: "task-tracker-kuliah.firebaseapp.com",
+    projectId: "task-tracker-kuliah",
+    storageBucket: "task-tracker-kuliah.firebasestorage.app",
+    messagingSenderId: "845393920645",
+    appId: "1:845393920645:web:07370e5de393cec87edfec"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  window.loginGoogle = function() {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        alert("Login berhasil: " + user.email);
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Login gagal");
+      });
+  }
+</script>
 </body>
 </html>
 ```
