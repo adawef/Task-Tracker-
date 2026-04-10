@@ -1,130 +1,213 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task Tracker Kuliah</title>
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
     body {
-  background: linear-gradient(to bottom, #6ec6ff 0%, #87ceeb 60%, #bdefff 100%);
-  padding: 20px;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
+      background: linear-gradient(to bottom, #6ec6ff 0%, #87ceeb 60%, #bdefff 100%);
+      padding: 20px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
     body::before {
-  content: "";
-  position: fixed;
-  top: 40px;
-  left: 50px;
-  width: 120px;
-  height: 60px;
-  background: white;
-  border-radius: 50px;
-  box-shadow:
-    200px 30px white,
-    500px 10px white,
-    800px 50px white;
-  z-index: -1;
-}
+      content: "";
+      position: fixed;
+      top: 40px;
+      left: 50px;
+      width: 120px;
+      height: 60px;
+      background: white;
+      border-radius: 50px;
+      box-shadow:
+        200px 30px white,
+        500px 10px white,
+        800px 50px white;
+      z-index: -1;
+    }
 
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: #3cb043;
-  border-top: 8px solid #2e8b57;
-  z-index: -1;
-}
-    .container { max-width: 1200px; margin: auto; }
-    h1 { text-align: center; margin-bottom: 20px; }
-    .dashboard { display: grid; grid-template-columns: repeat(5,1fr); gap: 15px; margin-bottom: 20px; }
-   .card,
-.form-section,
-.table-section {
-  background: rgba(255, 255, 255, 0.95);
-  border: 4px solid #ffcc00;
-  border-radius: 15px;
-  box-shadow: 4px 4px 0 #d35400;
-  text-align: center;
-}
-    .card h2 {
-  color: #d6b36a;
-}
-    .form-section, .table-section { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
-    .form-grid, .filter-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; margin-top: 15px; }
-    input, select, button { padding: 12px; border-radius: 8px; border: 1px solid #ccc; }
-    button {
-  background: #e63946;
-  color: white;
-  border: 3px solid #a4161a;
-  border-radius: 10px;
-  cursor: pointer;
-}
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background: #3cb043;
+      border-top: 8px solid #2e8b57;
+      z-index: -1;
+    }
 
-button:hover {
-  background: #ff595e;
-}
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-    th { background: #2563eb; color: white; }
-    .status-belum { color: red; font-weight: bold; }
-    .status-proses { color: orange; font-weight: bold; }
-    .status-selesai { color: green; font-weight: bold; }
-    .prioritas-rendah { color: green; font-weight: bold; }
-    .prioritas-sedang { color: orange; font-weight: bold; }
-    .prioritas-tinggi { color: red; font-weight: bold; }
-    @media(max-width:768px){ .dashboard,.form-grid,.filter-grid{grid-template-columns:1fr;} }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-btn {
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card,
+    .form-section,
     .table-section {
-  overflow-x: auto;
-}
+      background: rgba(255, 255, 255, 0.95);
+      border: 4px solid #ffcc00;
+      border-radius: 15px;
+      box-shadow: 4px 4px 0 #d35400;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card h2 {
+      color: #d6b36a;
+    }
+
+    .form-grid,
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    input,
+    select,
+    button {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #e63946;
+      color: white;
+      border: 3px solid #a4161a;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ff595e;
+    }
+
     table {
-  min-width: 900px;
-}
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      min-width: 900px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: #2563eb;
+      color: white;
+    }
+
+    .status-belum {
+      color: red;
+      font-weight: bold;
+    }
+
+    .status-proses {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .status-selesai {
+      color: green;
+      font-weight: bold;
+    }
+
+    .prioritas-rendah {
+      color: green;
+      font-weight: bold;
+    }
+
+    .prioritas-sedang {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .prioritas-tinggi {
+      color: red;
+      font-weight: bold;
+    }
+
+    .table-section {
+      overflow-x: auto;
+    }
+
     @media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
+      .dashboard,
+      .form-grid,
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
 
-  h1 {
-    font-size: 24px;
-  }
+      body {
+        padding: 10px;
+      }
 
-  .card,
-  .form-section,
-  .table-section {
-    padding: 15px;
-  }
+      h1 {
+        font-size: 24px;
+      }
 
-  th,
-  td {
-    font-size: 12px;
-    padding: 8px;
-  }
+      th,
+      td {
+        font-size: 12px;
+        padding: 8px;
+      }
 
-  button {
-    width: 100%;
-    margin-top: 5px;
-  }
+      button {
+        width: 100%;
+        margin-top: 5px;
+      }
 
-  td button {
-    width: auto;
-    padding: 8px 10px;
-    font-size: 12px;
-  }
-}
+      td button {
+        width: auto;
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Task Tracker Kuliah</h1>
-<div class="container">
-  <h1>Task Tracker Kuliah</h1>
-  <button onclick="loginGoogle()">Login dengan Gmail</button>
+
+    <button class="login-btn" onclick="loginGoogle()">Login dengan Gmail</button>
+
     <div class="dashboard">
       <div class="card"><h2 id="totalTask">0</h2><p>Total Tugas</p></div>
       <div class="card"><h2 id="belumTask">0</h2><p>Belum</p></div>
@@ -135,32 +218,38 @@ button:hover {
 
     <div class="form-section">
       <h2>Tambah Tugas</h2>
+
       <div class="form-grid">
         <input type="text" id="matkul" placeholder="Nama Mata Kuliah">
         <input type="text" id="semester" placeholder="Semester">
         <input type="text" id="dosen" placeholder="Nama Dosen">
         <input type="text" id="judul" placeholder="Judul Tugas">
         <input type="date" id="deadline">
+
         <select id="status">
-  <option value="Belum Dikerjakan">Belum Dikerjakan</option>
-  <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
-  <option value="Selesai">Selesai</option>
-</select>
+          <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+          <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
+          <option value="Selesai">Selesai</option>
+        </select>
+
         <select id="prioritas">
           <option>Rendah</option>
           <option>Sedang</option>
           <option>Tinggi</option>
         </select>
       </div>
+
       <br>
       <button onclick="tambahTugas()">Tambah Tugas</button>
     </div>
 
     <div class="table-section">
       <h2>Mencari Tugas kak?</h2>
+
       <div class="filter-grid">
         <input type="text" id="searchMatkul" placeholder="Cari Mata Kuliah" onkeyup="tampilkanTugas()">
         <input type="text" id="searchDosen" placeholder="Cari Dosen" onkeyup="tampilkanTugas()">
+
         <select id="filterStatus" onchange="tampilkanTugas()">
           <option value="">Semua Status</option>
           <option value="Belum Dikerjakan">Belum Dikerjakan</option>
@@ -187,49 +276,124 @@ button:hover {
     </div>
   </div>
 
-  <script>
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
 
-    function simpanData() {
-      localStorage.setItem('tasks', JSON.stringify(tasks));
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      deleteDoc,
+      doc
+    } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+
+   const firebaseConfig = {
+  apiKey: "AIzaSyDh7FlXy5uwomrsJ4np6uJ3RjqSSP8C99s",
+  authDomain: "task-tracker-kuliah.firebaseapp.com",
+  projectId: "task-tracker-kuliah",
+  storageBucket: "task-tracker-kuliah.firebasestorage.app",
+  messagingSenderId: "845393920645",
+  appId: "1:845393920645:web:07370e5de393cec87edfec",
+  measurementId: "G-0H72E68SZ6"
+};
+
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+    const db = getFirestore(app);
+
+    let currentUser = null;
+    let tasks = [];
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUser = user;
+        alert("Login sebagai: " + user.email);
+        loadTasksFromFirestore();
+      }
+    });
+
+    window.loginGoogle = function () {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          alert("Login berhasil: " + result.user.email);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Login gagal");
+        });
+    };
+
+    window.tambahTugas = async function () {
+      if (!currentUser) {
+        alert("Login dulu dengan Gmail");
+        return;
+      }
+
+      const task = {
+        uid: currentUser.uid,
+        matkul: document.getElementById('matkul').value,
+        semester: document.getElementById('semester').value,
+        dosen: document.getElementById('dosen').value,
+        judul: document.getElementById('judul').value,
+        deadline: document.getElementById('deadline').value,
+        status: document.getElementById('status').value,
+        prioritas: document.getElementById('prioritas').value
+      };
+
+      await addDoc(collection(db, 'tasks'), task);
+
+      alert('Tugas berhasil disimpan ke cloud');
+
+      document.getElementById('matkul').value = '';
+      document.getElementById('semester').value = '';
+      document.getElementById('dosen').value = '';
+      document.getElementById('judul').value = '';
+      document.getElementById('deadline').value = '';
+      document.getElementById('status').value = 'Belum Dikerjakan';
+      document.getElementById('prioritas').value = 'Rendah';
+
+      loadTasksFromFirestore();
+    };
+
+    async function loadTasksFromFirestore() {
+      tasks = [];
+
+      const querySnapshot = await getDocs(collection(db, 'tasks'));
+
+      querySnapshot.forEach((docItem) => {
+        const data = docItem.data();
+
+        if (data.uid === currentUser.uid) {
+          tasks.push({
+            id: docItem.id,
+            ...data
+          });
+        }
+      });
+
+      tampilkanTugas();
     }
 
-  function tambahTugas() {
-  const task = {
-    matkul: document.getElementById('matkul').value,
-    semester: document.getElementById('semester').value,
-    dosen: document.getElementById('dosen').value,
-    judul: document.getElementById('judul').value,
-    deadline: document.getElementById('deadline').value,
-    status: document.getElementById('status').value,
-    prioritas: document.getElementById('prioritas').value
-  };
-
-  if (!task.matkul || !task.semester || !task.dosen || !task.judul || !task.deadline) {
-    alert('Lengkapi semua data');
-    return;
-  }
-
-  tasks.push(task);
-  simpanData();
-  tampilkanTugas();
-
-  document.getElementById('matkul').value = '';
-  document.getElementById('semester').value = '';
-  document.getElementById('dosen').value = '';
-  document.getElementById('judul').value = '';
-  document.getElementById('deadline').value = '';
-  document.getElementById('status').value = 'Belum Dikerjakan';
-  document.getElementById('prioritas').value = 'Rendah';
-}
-    function tampilkanTugas() {
+    window.tampilkanTugas = function () {
       const taskList = document.getElementById('taskList');
       taskList.innerHTML = '';
 
       const cariMatkul = document.getElementById('searchMatkul').value.toLowerCase();
-const cariDosen = document.getElementById('searchDosen').value.toLowerCase();
-const statusFilter = document.getElementById('filterStatus').value;
-      let belum = 0, proses = 0, selesai = 0;
+      const cariDosen = document.getElementById('searchDosen').value.toLowerCase();
+      const statusFilter = document.getElementById('filterStatus').value;
+
+      let belum = 0;
+      let proses = 0;
+      let selesai = 0;
       let deadlineList = [];
 
       tasks.forEach((task, index) => {
@@ -238,20 +402,26 @@ const statusFilter = document.getElementById('filterStatus').value;
           task.dosen.toLowerCase().includes(cariDosen) &&
           (statusFilter === '' || task.status === statusFilter)
         ) {
-         let statusClass = '';
+          let statusClass = '';
 
-if (task.status === 'Belum Dikerjakan') {
-  statusClass = 'status-belum';
-} else if (task.status === 'Sedang Dikerjakan') {
-  statusClass = 'status-proses';
-} else if (task.status === 'Selesai') {
-  statusClass = 'status-selesai';
-}
-          let prioritasClass = task.prioritas === 'Rendah' ? 'prioritas-rendah' : task.prioritas === 'Sedang' ? 'prioritas-sedang' : 'prioritas-tinggi';
+          if (task.status === 'Belum Dikerjakan') {
+            statusClass = 'status-belum';
+          } else if (task.status === 'Sedang Dikerjakan') {
+            statusClass = 'status-proses';
+          } else if (task.status === 'Selesai') {
+            statusClass = 'status-selesai';
+          }
 
-          if(task.status === 'Belum Dikerjakan') belum++;
-          if(task.status === 'Sedang Dikerjakan') proses++;
-          if(task.status === 'Selesai') selesai++;
+          let prioritasClass =
+            task.prioritas === 'Rendah'
+              ? 'prioritas-rendah'
+              : task.prioritas === 'Sedang'
+              ? 'prioritas-sedang'
+              : 'prioritas-tinggi';
+
+          if (task.status === 'Belum Dikerjakan') belum++;
+          if (task.status === 'Sedang Dikerjakan') proses++;
+          if (task.status === 'Selesai') selesai++;
 
           deadlineList.push(task.deadline);
 
@@ -273,74 +443,41 @@ if (task.status === 'Belum Dikerjakan') {
         }
       });
 
-      totalTask.innerText = tasks.length;
-      belumTask.innerText = belum;
-      prosesTask.innerText = proses;
-      selesaiTask.innerText = selesai;
+      document.getElementById('totalTask').innerText = tasks.length;
+      document.getElementById('belumTask').innerText = belum;
+      document.getElementById('prosesTask').innerText = proses;
+      document.getElementById('selesaiTask').innerText = selesai;
 
-      if(deadlineList.length > 0){
+      if (deadlineList.length > 0) {
         deadlineList.sort();
-        deadlineTerdekat.innerText = deadlineList[0];
+        document.getElementById('deadlineTerdekat').innerText = deadlineList[0];
       } else {
-        deadlineTerdekat.innerText = '-';
+        document.getElementById('deadlineTerdekat').innerText = '-';
       }
-    }
+    };
 
-    function hapusTugas(index) {
-      if(confirm('Yakin lo bang?')) {
-        tasks.splice(index,1);
-        simpanData();
-        tampilkanTugas();
+    window.hapusTugas = async function (index) {
+      if (confirm('Yakin lo bang?')) {
+        await deleteDoc(doc(db, 'tasks', tasks[index].id));
+        loadTasksFromFirestore();
       }
-    }
+    };
 
-    function editTugas(index) {
-  const task = tasks[index];
+    window.editTugas = function (index) {
+      const task = tasks[index];
 
-  document.getElementById('matkul').value = task.matkul;
-  document.getElementById('semester').value = task.semester;
-  document.getElementById('dosen').value = task.dosen;
-  document.getElementById('judul').value = task.judul;
-  document.getElementById('deadline').value = task.deadline;
-  document.getElementById('status').value = task.status;
-  document.getElementById('prioritas').value = task.prioritas;
+      document.getElementById('matkul').value = task.matkul;
+      document.getElementById('semester').value = task.semester;
+      document.getElementById('dosen').value = task.dosen;
+      document.getElementById('judul').value = task.judul;
+      document.getElementById('deadline').value = task.deadline;
+      document.getElementById('status').value = task.status;
+      document.getElementById('prioritas').value = task.prioritas;
 
-  tasks.splice(index, 1);
-  simpanData();
-  tampilkanTugas();
-}
-
-    tampilkanTugas();
+      hapusTugas(index);
+    };
   </script>
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-  import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-auth.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDh7FlXy5uwomrsJ4np6uJ3RjqSSP8C99s",
-    authDomain: "task-tracker-kuliah.firebaseapp.com",
-    projectId: "task-tracker-kuliah",
-    storageBucket: "task-tracker-kuliah.firebasestorage.app",
-    messagingSenderId: "845393920645",
-    appId: "1:845393920645:web:07370e5de393cec87edfec"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  window.loginGoogle = function() {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        alert("Login berhasil: " + user.email);
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("Login gagal");
-      });
-  }
-</script>
 </body>
 </html>
 ```
+
